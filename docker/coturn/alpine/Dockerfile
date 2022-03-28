@@ -133,7 +133,7 @@ RUN if [ "${coturn_git_ref}" != 'HEAD' ]; then true \
 # Build Coturn from sources.
 # TODO: Remove this symlink with next Coturn release detecting MySQL libs correctly.
 RUN ln -s /usr/lib/pkgconfig/libmariadb.pc /usr/lib/pkgconfig/mariadb.pc \
- && ./configure --prefix=/usr \
+ && CFLAGS=-DTURN_NO_PROMETHEUS ./configure --prefix=/usr \
                 --turndbdir=/var/lib/coturn \
                 --disable-rpath \
                 --sysconfdir=/etc/coturn \
